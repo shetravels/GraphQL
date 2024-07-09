@@ -24,9 +24,6 @@ class ExecutionContext implements ExecutionContextInterface
 
     use ErrorContainerTrait;
 
-    /** @var AbstractSchema */
-    private $schema;
-
     /** @var Request */
     private $request;
 
@@ -41,9 +38,8 @@ class ExecutionContext implements ExecutionContextInterface
      *
      * @param AbstractSchema $schema
      */
-    public function __construct(AbstractSchema $schema)
+    public function __construct(private AbstractSchema $schema)
     {
-        $this->schema = $schema;
         $this->validateSchema();
 
         $this->introduceIntrospectionFields();

@@ -14,18 +14,13 @@ use Youshido\GraphQL\Parser\Location;
 class FragmentReference extends AbstractAst implements FragmentInterface
 {
 
-    /** @var  string */
-    protected $name;
-
     /**
      * @param string   $name
      * @param Location $location
      */
-    public function __construct($name, Location $location)
+    public function __construct(protected $name, Location $location)
     {
         parent::__construct($location);
-
-        $this->name = $name;
     }
 
     /**

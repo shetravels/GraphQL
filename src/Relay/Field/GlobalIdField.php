@@ -18,20 +18,15 @@ use Youshido\GraphQL\Type\Scalar\IdType;
 class GlobalIdField extends AbstractField
 {
 
-    /** @var  string */
-    protected $typeName;
-
     /**
      * @param string $typeName
      */
-    public function __construct($typeName)
+    public function __construct(protected $typeName)
     {
-        $this->typeName = $typeName;
-
         $config = [
             'type'    => $this->getType(),
             'name'    => $this->getName(),
-            'resolve' => [$this, 'resolve']
+            'resolve' => $this->resolve(...)
         ];
 
         parent::__construct($config);

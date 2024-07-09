@@ -53,7 +53,7 @@ class ConfigValidator implements ConfigValidatorInterface
     public function assertValidConfig(AbstractConfig $config)
     {
         if (!$this->isValidConfig($config)) {
-            throw new ConfigurationException('Config is not valid for ' . ($config->getContextObject() ? get_class($config->getContextObject()) : null) . "\n" . implode("\n", $this->getErrorsArray(false)));
+            throw new ConfigurationException('Config is not valid for ' . ($config->getContextObject() ? $config->getContextObject()::class : null) . "\n" . implode("\n", $this->getErrorsArray(false)));
         }
     }
 

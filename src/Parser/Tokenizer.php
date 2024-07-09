@@ -37,14 +37,14 @@ class Tokenizer
 
     protected function skipWhitespace()
     {
-        while ($this->pos < strlen($this->source)) {
+        while ($this->pos < strlen((string) $this->source)) {
             $ch = $this->source[$this->pos];
             if ($ch === ' ' || $ch === "\t" || $ch === ',') {
                 $this->pos++;
             } elseif ($ch === '#') {
                 $this->pos++;
                 while (
-                    $this->pos < strlen($this->source) &&
+                    $this->pos < strlen((string) $this->source) &&
                     ($code = ord($this->source[$this->pos])) &&
                     $code !== 10 && $code !== 13 && $code !== 0x2028 && $code !== 0x2029
                 ) {
@@ -74,7 +74,7 @@ class Tokenizer
      */
     protected function scan()
     {
-        if ($this->pos >= strlen($this->source)) {
+        if ($this->pos >= strlen((string) $this->source)) {
             return new Token(Token::TYPE_END, $this->getLine(), $this->getColumn());
         }
 
@@ -179,7 +179,7 @@ class Tokenizer
         $start = $this->pos;
         $this->pos++;
 
-        while ($this->pos < strlen($this->source)) {
+        while ($this->pos < strlen((string) $this->source)) {
             $ch = $this->source[$this->pos];
 
             if ($ch === '_' || $ch === '$' || ('a' <= $ch && $ch <= 'z') || ('A' <= $ch && $ch <= 'Z') || ('0' <= $ch && $ch <= '9')) {
@@ -189,37 +189,23 @@ class Tokenizer
             }
         }
 
-        $value = substr($this->source, $start, $this->pos - $start);
+        $value = substr((string) $this->source, $start, $this->pos - $start);
 
         return new Token($this->getKeyword($value), $this->getLine(), $this->getColumn(), $value);
     }
 
     protected function getKeyword($name)
     {
-        switch ($name) {
-            case 'null':
-                return Token::TYPE_NULL;
-
-            case 'true':
-                return Token::TYPE_TRUE;
-
-            case 'false':
-                return Token::TYPE_FALSE;
-
-            case 'query':
-                return Token::TYPE_QUERY;
-
-            case 'fragment':
-                return Token::TYPE_FRAGMENT;
-
-            case 'mutation':
-                return Token::TYPE_MUTATION;
-
-            case 'on':
-                return Token::TYPE_ON;
-        }
-
-        return Token::TYPE_IDENTIFIER;
+        return match ($name) {
+            'null' => Token::TYPE_NULL,
+            'true' => Token::TYPE_TRUE,
+            'false' => Token::TYPE_FALSE,
+            'query' => Token::TYPE_QUERY,
+            'fragment' => Token::TYPE_FRAGMENT,
+            'mutation' => Token::TYPE_MUTATION,
+            'on' => Token::TYPE_ON,
+            default => Token::TYPE_IDENTIFIER,
+        };
     }
 
     protected function expect($type)
@@ -250,9 +236,9 @@ class Tokenizer
             $this->skipInteger();
         }
 
-        $value = substr($this->source, $start, $this->pos - $start);
+        $value = substr((string) $this->source, $start, $this->pos - $start);
 
-        if (strpos($value, '.') === false) {
+        if (!str_contains($value, '.')) {
             $value = (int) $value;
         } else {
             $value = (float) $value;
@@ -263,7 +249,7 @@ class Tokenizer
 
     protected function skipInteger()
     {
-        while ($this->pos < strlen($this->source)) {
+        while ($this->pos < strlen((string) $this->source)) {
             $ch = $this->source[$this->pos];
             if ('0' <= $ch && $ch <= '9') {
                 $this->pos++;
@@ -298,7 +284,7 @@ class Tokenizer
     */
     protected function scanString()
     {
-        $len = strlen($this->source);
+        $len = strlen((string) $this->source);
         $this->pos++;
 
         $value = '';
@@ -332,7 +318,7 @@ class Tokenizer
                         $ch = "\r";
                         break;
                     case 'u':
-                        $codepoint = substr($this->source, $this->pos + 1, 4);
+                        $codepoint = substr((string) $this->source, $this->pos + 1, 4);
                         if( !preg_match('/[0-9A-Fa-f]{4}/', $codepoint)) {
                             throw $this->createException(sprintf('Invalid string unicode escape sequece "%s"', $codepoint));
                         }

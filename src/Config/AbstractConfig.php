@@ -26,31 +26,23 @@ abstract class AbstractConfig
      */
     protected $data = [];
 
-    protected $contextObject;
-
-    protected $finalClass = false;
-
     protected $extraFieldsAllowed = null;
 
     /**
      * TypeConfig constructor.
      *
      * @param array $configData
-     * @param mixed $contextObject
      * @param bool  $finalClass
      *
      * @throws ConfigurationException
      * @throws ValidationException
      */
-    public function __construct(array $configData, $contextObject = null, $finalClass = false)
+    public function __construct(array $configData, protected mixed $contextObject = null, protected $finalClass = false)
     {
         if (empty($configData)) {
             throw new ConfigurationException('Config for Type should be an array');
         }
-
-        $this->contextObject = $contextObject;
         $this->data          = $configData;
-        $this->finalClass    = $finalClass;
 
         $this->build();
     }
@@ -60,7 +52,7 @@ abstract class AbstractConfig
         $validator = ConfigValidator::getInstance();
 
         if (!$validator->validate($this->data, $this->getContextRules(), $this->extraFieldsAllowed)) {
-            throw new ConfigurationException('Config is not valid for ' . ($this->contextObject ? get_class($this->contextObject) : null) . "\n" . implode("\n", $validator->getErrorsArray(false)));
+            throw new ConfigurationException('Config is not valid for ' . ($this->contextObject ? $this->contextObject::class : null) . "\n" . implode("\n", $validator->getErrorsArray(false)));
         }
     }
 
@@ -148,15 +140,15 @@ abstract class AbstractConfig
 
     public function __call($method, $arguments)
     {
-        if (substr($method, 0, 3) == 'get') {
-            $propertyName = lcfirst(substr($method, 3));
-        } elseif (substr($method, 0, 3) == 'set') {
-            $propertyName = lcfirst(substr($method, 3));
+        if (str_starts_with((string) $method, 'get')) {
+            $propertyName = lcfirst(substr((string) $method, 3));
+        } elseif (str_starts_with((string) $method, 'set')) {
+            $propertyName = lcfirst(substr((string) $method, 3));
             $this->set($propertyName, $arguments[0]);
 
             return $this;
-        } elseif (substr($method, 0, 2) == 'is') {
-            $propertyName = lcfirst(substr($method, 2));
+        } elseif (str_starts_with((string) $method, 'is')) {
+            $propertyName = lcfirst(substr((string) $method, 2));
         } else {
             throw new \Exception('Call to undefined method ' . $method);
         }

@@ -54,23 +54,23 @@ class SchemaType extends AbstractObjectType
             ->addField(new Field([
                 'name'    => 'queryType',
                 'type'    => new QueryType(),
-                'resolve' => [$this, 'resolveQueryType']
+                'resolve' => $this->resolveQueryType(...)
             ]))
             ->addField(new Field([
                 'name'    => 'mutationType',
                 'type'    => new QueryType(),
-                'resolve' => [$this, 'resolveMutationType']
+                'resolve' => $this->resolveMutationType(...)
             ]))
             ->addField(new Field([
                 'name'    => 'subscriptionType',
                 'type'    => new QueryType(),
-                'resolve' => [$this, 'resolveSubscriptionType']
+                'resolve' => $this->resolveSubscriptionType(...)
             ]))
             ->addField(new TypesField())
             ->addField(new Field([
                 'name'    => 'directives',
                 'type'    => new ListType(new DirectiveType()),
-                'resolve' => [$this, 'resolveDirectives']
+                'resolve' => $this->resolveDirectives(...)
             ]));
     }
 }

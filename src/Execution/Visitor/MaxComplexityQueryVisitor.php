@@ -18,11 +18,6 @@ class MaxComplexityQueryVisitor extends AbstractQueryVisitor
 {
 
     /**
-     * @var int max score allowed before throwing an exception (causing processing to stop)
-     */
-    public $maxScore;
-
-    /**
      * @var int default score for nodes without explicit cost functions
      */
     protected $defaultScore = 1;
@@ -30,13 +25,11 @@ class MaxComplexityQueryVisitor extends AbstractQueryVisitor
     /**
      * MaxComplexityQueryVisitor constructor.
      *
-     * @param int $max max allowed complexity score
+     * @param int $maxScore max allowed complexity score
      */
-    public function __construct($max)
+    public function __construct(public $maxScore)
     {
         parent::__construct();
-
-        $this->maxScore = $max;
     }
 
     /**

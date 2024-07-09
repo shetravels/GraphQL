@@ -14,14 +14,9 @@ use Youshido\GraphQL\Parser\Location;
 class ResolveException extends \Exception implements LocationableExceptionInterface
 {
 
-    /** @var  Location */
-    private $location;
-
-    public function __construct($message, Location $location = null)
+    public function __construct($message, private readonly ?\Youshido\GraphQL\Parser\Location $location = null)
     {
         parent::__construct($message);
-
-        $this->location = $location;
     }
 
 

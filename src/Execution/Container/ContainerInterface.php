@@ -11,10 +11,9 @@ interface ContainerInterface
 
     /**
      * @param string $id
-     * @param mixed $value
      * @return mixed
      */
-    public function set($id, $value);
+    public function set($id, mixed $value);
 
     /**
      * @param string $id

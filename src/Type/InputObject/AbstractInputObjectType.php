@@ -65,9 +65,7 @@ abstract class AbstractInputObjectType extends AbstractType
         }
 
         $typeConfig     = $this->getConfig();
-        $requiredFields = array_filter($typeConfig->getFields(), function (InputFieldInterface $field) {
-            return $field->getType()->getKind() == TypeMap::KIND_NON_NULL;
-        });
+        $requiredFields = array_filter($typeConfig->getFields(), fn(InputFieldInterface $field) => $field->getType()->getKind() == TypeMap::KIND_NON_NULL);
 
         foreach ($value as $valueKey => $valueItem) {
             if (!$typeConfig->hasField($valueKey)) {

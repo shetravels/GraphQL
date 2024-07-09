@@ -73,7 +73,7 @@ trait FieldsAwareConfigTrait
      *
      * @throws ConfigurationException
      */
-    public function addField($field, $fieldInfo = null)
+    public function addField($field, mixed $fieldInfo = null)
     {
         if (!($field instanceof FieldInterface)) {
             $field = new Field($this->buildFieldConfig($field, $fieldInfo));

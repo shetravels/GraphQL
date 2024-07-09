@@ -43,7 +43,7 @@ use Youshido\GraphQL\Validator\ResolveValidator\ResolveValidatorInterface;
 class Processor
 {
 
-    const TYPE_NAME_QUERY = '__typename';
+    public const TYPE_NAME_QUERY = '__typename';
 
     /** @var ExecutionContext */
     protected $executionContext;
@@ -135,7 +135,7 @@ class Processor
      * @return mixed
      *   The unpacked result.
      */
-    public static function unpackDeferredResults($result)
+    public static function unpackDeferredResults(mixed $result)
     {
         while ($result instanceof DeferredResult) {
             $result = $result->result;
@@ -398,10 +398,9 @@ class Processor
      */
     protected function deferredResolve($resolvedValue, FieldInterface $field, callable $callback) {
         if ($resolvedValue instanceof DeferredResolverInterface) {
-            $deferredResult = new DeferredResult($resolvedValue, function ($resolvedValue) use ($field, $callback) {
+            $deferredResult = new DeferredResult($resolvedValue, fn($resolvedValue) =>
                 // Allow nested deferred resolvers.
-                return $this->deferredResolve($resolvedValue, $field, $callback);
-            });
+                $this->deferredResolve($resolvedValue, $field, $callback));
 
             // Whenever we stumble upon a deferred resolver, add it to the queue
             // to be resolved later.
@@ -461,32 +460,14 @@ class Processor
             $result = [];
             foreach ($resolvedValue as $resolvedValueItem) {
                 try {
-                    $fakeField->getConfig()->set('resolve', function () use ($resolvedValueItem) {
-                        return $resolvedValueItem;
-                    });
+                    $fakeField->getConfig()->set('resolve', fn() => $resolvedValueItem);
 
-                    switch ($itemType->getNullableType()->getKind()) {
-                        case TypeMap::KIND_ENUM:
-                        case TypeMap::KIND_SCALAR:
-                            $value = $this->resolveScalar($fakeField, $fakeAst, $resolvedValueItem);
-
-                            break;
-
-
-                        case TypeMap::KIND_OBJECT:
-                            $value = $this->resolveObject($fakeField, $fakeAst, $resolvedValueItem);
-
-                            break;
-
-                        case TypeMap::KIND_UNION:
-                        case TypeMap::KIND_INTERFACE:
-                            $value = $this->resolveComposite($fakeField, $fakeAst, $resolvedValueItem);
-
-                            break;
-
-                        default:
-                            $value = null;
-                    }
+                    $value = match ($itemType->getNullableType()->getKind()) {
+                        TypeMap::KIND_ENUM, TypeMap::KIND_SCALAR => $this->resolveScalar($fakeField, $fakeAst, $resolvedValueItem),
+                        TypeMap::KIND_OBJECT => $this->resolveObject($fakeField, $fakeAst, $resolvedValueItem),
+                        TypeMap::KIND_UNION, TypeMap::KIND_INTERFACE => $this->resolveComposite($fakeField, $fakeAst, $resolvedValueItem),
+                        default => null,
+                    };
                 } catch (\Exception $e) {
                     $this->executionContext->addError($e);
 
@@ -518,7 +499,7 @@ class Processor
 
             try {
                 return $this->collectResult($field, $type, $ast, $resolvedValue);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 return null;
             }
         });
@@ -633,7 +614,7 @@ class Processor
     protected function combineResults(array $results)
     {
         if (count($results) > 0) {
-            return call_user_func_array('array_replace_recursive', $results);
+            return call_user_func_array(array_replace_recursive(...), $results);
         }
 
         return [];

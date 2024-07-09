@@ -14,14 +14,9 @@ use Youshido\GraphQL\Parser\Location;
 abstract class AbstractParserError extends \Exception implements LocationableExceptionInterface
 {
 
-    /** @var Location */
-    private $location;
-
-    public function __construct($message, Location $location)
+    public function __construct($message, private readonly Location $location)
     {
         parent::__construct($message);
-
-        $this->location = $location;
     }
 
     public function getLocation()

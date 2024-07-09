@@ -163,12 +163,12 @@ class QueryType extends AbstractObjectType
             ->addField('description', TypeMap::TYPE_STRING)
             ->addField('ofType', [
                 'type'    => new QueryType(),
-                'resolve' => [$this, 'resolveOfType']
+                'resolve' => $this->resolveOfType(...)
             ])
             ->addField(new Field([
                 'name'    => 'inputFields',
                 'type'    => new ListType(new NonNullType(new InputValueType())),
-                'resolve' => [$this, 'resolveInputFields']
+                'resolve' => $this->resolveInputFields(...)
             ]))
             ->addField(new Field([
                 'name'    => 'enumValues',
@@ -179,7 +179,7 @@ class QueryType extends AbstractObjectType
                     ]
                 ],
                 'type'    => new ListType(new NonNullType(new EnumValueType())),
-                'resolve' => [$this, 'resolveEnumValues']
+                'resolve' => $this->resolveEnumValues(...)
             ]))
             ->addField(new Field([
                 'name'    => 'fields',
@@ -190,16 +190,16 @@ class QueryType extends AbstractObjectType
                     ]
                 ],
                 'type'    => new ListType(new NonNullType(new FieldType())),
-                'resolve' => [$this, 'resolveFields']
+                'resolve' => $this->resolveFields(...)
             ]))
             ->addField(new Field([
                 'name'    => 'interfaces',
                 'type'    => new ListType(new NonNullType(new QueryType())),
-                'resolve' => [$this, 'resolveInterfaces']
+                'resolve' => $this->resolveInterfaces(...)
             ]))
             ->addField('possibleTypes', [
                 'type'    => new ListType(new NonNullType(new QueryType())),
-                'resolve' => [$this, 'resolvePossibleTypes']
+                'resolve' => $this->resolvePossibleTypes(...)
             ]);
     }
 

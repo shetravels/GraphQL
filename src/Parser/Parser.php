@@ -192,8 +192,8 @@ class Parser extends Tokenizer
                 $type,
                 $required,
                 $isArray,
-                $arrayElementNullable,
-                new Location($variableToken->getLine(), $variableToken->getColumn())
+                new Location($variableToken->getLine(), $variableToken->getColumn()),
+                $arrayElementNullable
             );
 
             if ($this->match(Token::TYPE_EQUAL)) {
@@ -228,7 +228,7 @@ class Parser extends Tokenizer
                 $variable->setUsed(true);
             }
 
-            $variableReference = new VariableReference($name, $variable, new Location($startToken->getLine(), $startToken->getColumn()));
+            $variableReference = new VariableReference($name, new Location($startToken->getLine(), $startToken->getColumn()), $variable);
 
             $this->data['variableReferences'][] = $variableReference;
 
@@ -405,26 +405,13 @@ class Parser extends Tokenizer
 
     protected function parseListValue()
     {
-        switch ($this->lookAhead->getType()) {
-            case Token::TYPE_NUMBER:
-            case Token::TYPE_STRING:
-            case Token::TYPE_TRUE:
-            case Token::TYPE_FALSE:
-            case Token::TYPE_NULL:
-            case Token::TYPE_IDENTIFIER:
-                return $this->expect($this->lookAhead->getType())->getData();
-
-            case Token::TYPE_VARIABLE:
-                return $this->parseVariableReference();
-
-            case Token::TYPE_LBRACE:
-                return $this->parseObject(true);
-
-            case Token::TYPE_LSQUARE_BRACE:
-                return $this->parseList(false);
-        }
-
-        throw new SyntaxErrorException('Can\'t parse argument', $this->getLocation());
+        return match ($this->lookAhead->getType()) {
+            Token::TYPE_NUMBER, Token::TYPE_STRING, Token::TYPE_TRUE, Token::TYPE_FALSE, Token::TYPE_NULL, Token::TYPE_IDENTIFIER => $this->expect($this->lookAhead->getType())->getData(),
+            Token::TYPE_VARIABLE => $this->parseVariableReference(),
+            Token::TYPE_LBRACE => $this->parseObject(true),
+            Token::TYPE_LSQUARE_BRACE => $this->parseList(false),
+            default => throw new SyntaxErrorException('Can\'t parse argument', $this->getLocation()),
+        };
     }
 
     protected function parseObject($createType = true)

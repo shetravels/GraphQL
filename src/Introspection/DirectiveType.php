@@ -57,11 +57,11 @@ class DirectiveType extends AbstractObjectType
             ->addField('description', TypeMap::TYPE_STRING)
             ->addField('args', [
                 'type'    => new NonNullType(new ListType(new NonNullType(new InputValueType()))),
-                'resolve' => [$this, 'resolveArgs'],
+                'resolve' => $this->resolveArgs(...),
             ])
             ->addField('locations',[
                 'type'  =>  new NonNullType(new ListType(new NonNullType(new DirectiveLocationType()))),
-                'resolve' => [$this, 'resolveLocations'],
+                'resolve' => $this->resolveLocations(...),
             ]);
     }
 }

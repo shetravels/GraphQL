@@ -15,10 +15,6 @@ class Fragment extends AbstractAst
 
     use AstDirectivesTrait;
 
-    protected $name;
-
-    protected $model;
-
     /** @var Field[]|Query[] */
     protected $fields;
 
@@ -32,12 +28,9 @@ class Fragment extends AbstractAst
      * @param Field[]|Query[] $fields
      * @param Location        $location
      */
-    public function __construct($name, $model, array $directives, array $fields, Location $location)
+    public function __construct(protected $name, protected $model, array $directives, array $fields, Location $location)
     {
         parent::__construct($location);
-
-        $this->name   = $name;
-        $this->model  = $model;
         $this->fields = $fields;
         $this->setDirectives($directives);
     }
@@ -66,10 +59,7 @@ class Fragment extends AbstractAst
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
+    public function setName(mixed $name)
     {
         $this->name = $name;
     }
@@ -82,10 +72,7 @@ class Fragment extends AbstractAst
         return $this->model;
     }
 
-    /**
-     * @param mixed $model
-     */
-    public function setModel($model)
+    public function setModel(mixed $model)
     {
         $this->model = $model;
     }

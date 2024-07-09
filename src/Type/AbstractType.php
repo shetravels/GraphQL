@@ -11,7 +11,7 @@ namespace Youshido\GraphQL\Type;
 
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 
-abstract class AbstractType implements TypeInterface
+abstract class AbstractType implements TypeInterface, \Stringable
 {
 
     protected $lastValidationError = null;
@@ -75,7 +75,7 @@ abstract class AbstractType implements TypeInterface
         return false;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

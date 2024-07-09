@@ -49,11 +49,11 @@ class InputValueType extends AbstractObjectType
             ->addField(new Field([
                 'name'    => 'type',
                 'type'    => new NonNullType(new QueryType()),
-                'resolve' => [$this, 'resolveType']
+                'resolve' => $this->resolveType(...)
             ]))
             ->addField('defaultValue', [
                 'type' => TypeMap::TYPE_STRING,
-                'resolve' => [$this, 'resolveDefaultValue']
+                'resolve' => $this->resolveDefaultValue(...)
             ]);
     }
 
