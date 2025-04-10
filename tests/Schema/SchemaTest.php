@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\NonNullType;
@@ -19,7 +20,7 @@ use Youshido\Tests\DataProvider\TestEmptySchema;
 use Youshido\Tests\DataProvider\TestObjectType;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class SchemaTest extends \PHPUnit_Framework_TestCase
+class SchemaTest extends TestCase
 {
 
     public function testStandaloneEmptySchema()

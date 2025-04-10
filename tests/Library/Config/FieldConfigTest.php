@@ -9,10 +9,11 @@
 namespace Youshido\Tests\Library\Config;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class FieldConfigTest extends \PHPUnit_Framework_TestCase
+class FieldConfigTest extends TestCase
 {
 
     public function testInvalidParams()

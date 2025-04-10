@@ -8,6 +8,7 @@
 
 namespace Youshido\Tests\Library\Utilities;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
@@ -15,7 +16,7 @@ use Youshido\GraphQL\Type\TypeService;
 use Youshido\Tests\DataProvider\TestInterfaceType;
 use Youshido\Tests\DataProvider\TestObjectType;
 
-class TypeUtilitiesTest extends \PHPUnit_Framework_TestCase
+class TypeUtilitiesTest extends TestCase
 {
 
     public function testTypeService()

@@ -8,6 +8,7 @@
 namespace Youshido\Tests\Parser;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Parser\Ast\Argument;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputList;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
@@ -20,7 +21,7 @@ use Youshido\GraphQL\Parser\Ast\Query;
 use Youshido\GraphQL\Parser\Ast\TypedFragmentReference;
 use Youshido\GraphQL\Parser\Location;
 
-class AstTest extends \PHPUnit_Framework_TestCase
+class AstTest extends TestCase
 {
 
     public function testArgument()

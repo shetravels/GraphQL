@@ -8,6 +8,7 @@
 
 namespace Youshido\Tests\Library\Utilities;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Exception\Interfaces\ExtendedExceptionInterface;
 use Youshido\GraphQL\Exception\Interfaces\LocationableExceptionInterface;
 use Youshido\GraphQL\Exception\Parser\SyntaxErrorException;
@@ -15,12 +16,12 @@ use Youshido\GraphQL\Parser\Location;
 use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerInterface;
 use Youshido\GraphQL\Validator\ErrorContainer\ErrorContainerTrait;
 
-class ErrorContainerTraitTest extends \PHPUnit_Framework_TestCase implements ErrorContainerInterface
+class ErrorContainerTraitTest extends TestCase implements ErrorContainerInterface
 {
 
     use ErrorContainerTrait;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clearErrors();
     }

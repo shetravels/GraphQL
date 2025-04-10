@@ -9,12 +9,13 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Relay\RelayMutation;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class MutationTest extends \PHPUnit_Framework_TestCase
+class MutationTest extends TestCase
 {
 
     public function testCreation()

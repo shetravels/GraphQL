@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Validator;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Field\Field;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
@@ -19,7 +20,7 @@ use Youshido\Tests\DataProvider\TestInputField;
 use Youshido\Tests\DataProvider\TestInputObjectType;
 use Youshido\Tests\DataProvider\TestObjectType;
 
-class TypeValidationRuleTest extends \PHPUnit_Framework_TestCase
+class TypeValidationRuleTest extends TestCase
 {
 
     /**
@@ -27,7 +28,7 @@ class TypeValidationRuleTest extends \PHPUnit_Framework_TestCase
      */
     protected $rule;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->rule = new TypeValidationRule(ConfigValidator::getInstance());
     }

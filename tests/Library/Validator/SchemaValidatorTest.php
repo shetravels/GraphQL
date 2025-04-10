@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Validator;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Schema\Schema;
 use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Object\ObjectType;
@@ -18,7 +19,7 @@ use Youshido\GraphQL\Validator\SchemaValidator\SchemaValidator;
 use Youshido\Tests\DataProvider\TestEmptySchema;
 use Youshido\Tests\DataProvider\TestInterfaceType;
 
-class SchemaValidatorTest extends \PHPUnit_Framework_TestCase
+class SchemaValidatorTest extends TestCase
 {
     /**
      * @expectedException \Youshido\GraphQL\Exception\ConfigurationException

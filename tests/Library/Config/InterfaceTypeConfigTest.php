@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Config;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Object\InterfaceTypeConfig;
 use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\IntType;
@@ -16,7 +17,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 use Youshido\Tests\DataProvider\TestInterfaceType;
 
-class InterfaceTypeConfigTest extends \PHPUnit_Framework_TestCase
+class InterfaceTypeConfigTest extends TestCase
 {
 
     public function testCreation()

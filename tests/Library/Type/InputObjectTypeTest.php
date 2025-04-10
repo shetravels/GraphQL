@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
 use Youshido\GraphQL\Schema\Schema;
@@ -22,7 +23,7 @@ use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\Tests\DataProvider\TestInputObjectType;
 
-class InputObjectTypeTest extends \PHPUnit_Framework_TestCase
+class InputObjectTypeTest extends TestCase
 {
 
     public function testInternal()

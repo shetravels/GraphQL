@@ -9,13 +9,14 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Relay\Connection\Connection;
 use Youshido\GraphQL\Relay\Type\PageInfoType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\Tests\DataProvider\TestObjectType;
 
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+class ConnectionTest extends TestCase
 {
 
     public function testConnectionArgs()

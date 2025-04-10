@@ -8,6 +8,7 @@
 
 namespace Youshido\Tests\Library\Config;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Type\Enum\EnumType;
 use Youshido\GraphQL\Type\Object\ObjectType;
 use Youshido\GraphQL\Type\Scalar\IdType;
@@ -18,7 +19,7 @@ use Youshido\Tests\DataProvider\TestConfig;
 use Youshido\Tests\DataProvider\TestConfigExtraFields;
 use Youshido\Tests\DataProvider\TestConfigInvalidRule;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
 
     /**

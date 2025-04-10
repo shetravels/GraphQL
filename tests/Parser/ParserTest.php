@@ -7,6 +7,7 @@
 
 namespace Youshido\Tests\Parser;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Parser\Ast\Argument;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputList;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\InputObject;
@@ -33,7 +34,7 @@ class TokenizerTestingParser extends Parser {
     }
 }
 
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
 
     public function testEmptyParser()
@@ -113,13 +114,13 @@ GRAPHQL;
     public function testEscapedStrings()
     {
         $this->assertEquals([
-                $this->tokenizeStringContents(""),           
+                $this->tokenizeStringContents(""),
                 $this->tokenizeStringContents("x"),
                 $this->tokenizeStringContents("\\\""),
-                $this->tokenizeStringContents("\\/"),   
+                $this->tokenizeStringContents("\\/"),
                 $this->tokenizeStringContents("\\f"),
                 $this->tokenizeStringContents("\\n"),
-                $this->tokenizeStringContents("\\r"),         
+                $this->tokenizeStringContents("\\r"),
                 $this->tokenizeStringContents("\\b"),
                 $this->tokenizeStringContents("\\uABCD")
             ],
@@ -130,9 +131,9 @@ GRAPHQL;
                 new Token(Token::TYPE_STRING, 1, 3, '/'),
                 new Token(Token::TYPE_STRING, 1, 3, "\f"),
                 new Token(Token::TYPE_STRING, 1, 3, "\n"),
-                new Token(Token::TYPE_STRING, 1, 3, "\r"),     
-                new Token(Token::TYPE_STRING, 1, 3, sprintf("%c", 8)),         
-                new Token(Token::TYPE_STRING, 1, 7, html_entity_decode("&#xABCD;", ENT_QUOTES, 'UTF-8'))            
+                new Token(Token::TYPE_STRING, 1, 3, "\r"),
+                new Token(Token::TYPE_STRING, 1, 3, sprintf("%c", 8)),
+                new Token(Token::TYPE_STRING, 1, 7, html_entity_decode("&#xABCD;", ENT_QUOTES, 'UTF-8'))
             ]
         );
     }

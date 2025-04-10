@@ -9,11 +9,12 @@
 namespace Youshido\Tests\Parser;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Request;
 use Youshido\GraphQL\Parser\Ast\Fragment;
 use Youshido\GraphQL\Parser\Location;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
 
     public function testMethods()

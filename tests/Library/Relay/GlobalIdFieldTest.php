@@ -9,11 +9,12 @@
 namespace Youshido\Tests\Library\Relay;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Relay\Field\GlobalIdField;
 use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 
-class GlobalIdFieldTest extends \PHPUnit_Framework_TestCase
+class GlobalIdFieldTest extends TestCase
 {
 
     public function testSimpleMethods()

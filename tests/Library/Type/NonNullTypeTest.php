@@ -9,12 +9,13 @@
 namespace Youshido\Tests\Library\Type;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 use Youshido\GraphQL\Type\TypeMap;
 use Youshido\GraphQL\Type\TypeService;
 
-class NonNullTypeTest extends \PHPUnit_Framework_TestCase
+class NonNullTypeTest extends TestCase
 {
 
     /**

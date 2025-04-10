@@ -1,9 +1,10 @@
 <?php
 namespace Youshido\Tests\Issues\Issue171;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Processor;
 
-class Issue171Test extends \PHPUnit_Framework_TestCase
+class Issue171Test extends TestCase
 {
     public function testItSetsDeprecationReasonToNullByDefault()
     {

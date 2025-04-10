@@ -9,11 +9,12 @@
 namespace Youshido\Tests\Library\Config;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 use Youshido\Tests\DataProvider\TestInterfaceType;
 
-class ObjectTypeConfigTest extends \PHPUnit_Framework_TestCase
+class ObjectTypeConfigTest extends TestCase
 {
 
     public function testCreation()

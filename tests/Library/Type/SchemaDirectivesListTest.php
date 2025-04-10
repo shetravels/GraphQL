@@ -2,10 +2,11 @@
 
 namespace Youshido\Tests\Library\Type;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Directive\Directive;
 use Youshido\GraphQL\Type\SchemaDirectivesList;
 
-class SchemaDirectivesListTest extends \PHPUnit_Framework_TestCase
+class SchemaDirectivesListTest extends TestCase
 {
     public function testCanAddASingleDirective()
     {

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Library\Field;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\Field;
@@ -21,7 +22,7 @@ use Youshido\GraphQL\Validator\ConfigValidator\ConfigValidator;
 use Youshido\Tests\DataProvider\TestField;
 use Youshido\Tests\DataProvider\TestResolveInfo;
 
-class FieldTest extends \PHPUnit_Framework_TestCase
+class FieldTest extends TestCase
 {
 
     public function testInlineFieldCreation()

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Container\Container;
 use Youshido\GraphQL\Execution\Context\ExecutionContext;
 use Youshido\GraphQL\Execution\Processor;
@@ -31,7 +32,7 @@ use Youshido\Tests\DataProvider\TestInterfaceType;
 use Youshido\Tests\DataProvider\TestObjectType;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class ProcessorTest extends \PHPUnit_Framework_TestCase
+class ProcessorTest extends TestCase
 {
 
     private $_counter = 0;
@@ -684,7 +685,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 ]
             ])
         ]);
-        
+
         $processor = new Processor($schema);
         $processor->getExecutionContext()->setContainer($container);
         $this->assertNotNull($processor->getExecutionContext()->getContainer());

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Directive\Directive;
 use Youshido\GraphQL\Directive\DirectiveLocation;
 use Youshido\GraphQL\Execution\Processor;
@@ -25,7 +26,7 @@ use Youshido\GraphQL\Type\Union\UnionType;
 use Youshido\Tests\DataProvider\TestEmptySchema;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class IntrospectionTest extends \PHPUnit_Framework_TestCase
+class IntrospectionTest extends TestCase
 {
     private $introspectionQuery = <<<TEXT
 query IntrospectionQuery {

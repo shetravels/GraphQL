@@ -8,6 +8,7 @@
 namespace Youshido\Tests\Library\Validator;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Request;
 use Youshido\GraphQL\Parser\Ast\Argument;
 use Youshido\GraphQL\Parser\Ast\ArgumentValue\Variable;
@@ -19,7 +20,7 @@ use Youshido\GraphQL\Parser\Ast\Query;
 use Youshido\GraphQL\Parser\Location;
 use Youshido\GraphQL\Validator\RequestValidator\RequestValidator;
 
-class RequestValidatorTest extends \PHPUnit_Framework_TestCase
+class RequestValidatorTest extends TestCase
 {
 
     /**

@@ -9,12 +9,13 @@
 namespace Youshido\Tests\Library\Field;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Field\InputField;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class ArgumentsAwareConfigTraitTest extends \PHPUnit_Framework_TestCase
+class ArgumentsAwareConfigTraitTest extends TestCase
 {
 
     public function testArguments()

@@ -9,6 +9,7 @@
 namespace Youshido\Tests\Schema;
 
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Execution\Context\ExecutionContext;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Field\Field;
@@ -17,7 +18,7 @@ use Youshido\GraphQL\Parser\Location;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\Tests\DataProvider\TestSchema;
 
-class ResolveInfoTest extends \PHPUnit_Framework_TestCase
+class ResolveInfoTest extends TestCase
 {
     public function testMethods()
     {

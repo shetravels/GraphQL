@@ -2,6 +2,7 @@
 
 namespace Youshido\Tests\Issues\Issue193;
 
+use PHPUnit\Framework\TestCase;
 use Youshido\GraphQL\Config\Schema\SchemaConfig;
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\AbstractSchema;
@@ -11,7 +12,7 @@ use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
-class Issue193Test extends \PHPUnit_Framework_TestCase
+class Issue193Test extends TestCase
 {
     public function testResolvedInterfacesShouldBeRegistered()
     {
